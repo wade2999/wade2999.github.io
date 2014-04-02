@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+
+    <title>Main Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <!--<link href="bootstrap/css/bootstrap.css" rel="stylesheet">-->
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="http://getbootstrap.com/examples/theme/theme.css" rel="stylesheet"> -->
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style id="holderjs-style" type="text/css">
+  .pic{
+    float: left;
+    margin-bottom: 6px;
+    margin-top:0px;
+    margin-left: 0px;
+    border:2px ;
+    border-color: #ffffff;
+}   
+.panel-body{
+    margin-left: 7%;
+    font-style: 
+}
+.panel-default{
+    border:3px ;
+    border-style: solid;
+    border-color: #c48cd1;
+    background-opacity:0.2;
+    height: 140px;
+    width: 100%;
+}
+.panel-default:hover{
+	background-color:#e1f0df;
+}
+input.margin
+{
+margin-top:25px;
+}
+button.margin
+{
+margin-top:25px;
+}
+p.margin
+{
+margin-top:5px;
+margin-bottom:5px;
+margin-left:15px;
+margin-right:15px;
+}
+img.margin
+{
+margin-top:2px;
+margin-bottom:2px;
+margin-left:2px;
+margin-right:2px;
+}
+
+
+
+
+	.form-control
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+		//margin-left: 5px;
+		//margin-right: 5px;
+	}
+	
+	.navbar-brand
+	{
+		padding-top: 10px;
+		//padding-left: 0px;
+	}
+	
+	//WHERE elements
+	
+	.where-btn-group
+	{
+		width: 75%;
+	}
+	
+	.where-radio-group
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.where-radio-group.active, .where-radio-group:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.btn-anywhere
+	{
+		width: 75%;
+		background-color: #A976F2;
+		margin-top: 10px;
+	}
+	
+	.btn-anywhere:hover, .btn-anywhere.active, .btn-anywhere:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.form-where, .form-when
+	{
+		text-align: center !important;	
+	}
+	
+	#somewhere-else
+	{
+		width: 75%;
+	}
+	
+	#state-select
+	{
+		width: 150px !important;
+	}
+	
+	//WHEN elements
+	
+	.date-text
+	{
+		width: 75% !important;
+	}
+	
+	#anytime-button
+	{
+		width: 75%;
+	}
+	
+	.form-when
+	{
+		text-align: center;
+	}
+
+
+  </style></head>
+
+
+
+<body>
+
+
+	<!-- NAVIGATION BAR -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="Main Page.html"><img src="logo.jpg" width=200 height=45 /></a>
+			</div>
+			
+			<form class="navbar-form navbar-left" role="form">
+				<div class="form-group">
+					<button type="button" class="btn btn-primary navbar-btn" onClick="toWhere();">Change Place/Time</button>
+				</div>
+			</form>
+			
+			<div class="navbar-collapse collapse pull-right">
+				<ul class="nav navbar-nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Preferences</a></li>
+							<li><a href="Main Page.html">Log Out</a></li>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+	
+	<div style="height: 50px;">
+	</div>
+	
+	
+  	<!-- LOGIN MODAL -->
+	<div class="modal fade" id="loginModal" tabindex="-1" data-dismiss="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<!-- LogIn form -->
+					<h1 align="center" class="modal-title"> Log In </h1>
+					<form class="form-signin" role="form" action="javascript:toWhere();">
+						<h4>Email address</h4>
+						<input type="email" class="form-control" placeholder="Northwestern Email" required autofocus>
+						<h4>Password</h4>
+						<input type="password" class="form-control" placeholder="Password" required>
+						<label class="checkbox">
+							<input type="checkbox" value="remember-me"> Remember me
+						</label>
+						<button class="btn btn-lg btn-primary btn-block" type="submit" id="btn-login-signup" onClick="sessionStorage.setItem(&quot;login&quot, 1);">Sign in</button>
+						<button class="btn btn-lg btn-secondary btn-block" type="button" id="btn-login-register" onClick="registerAlert()">Register</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="toWhere()">Skip &#8680;</button>
+					<br>
+					(You will not be able to post)
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- WHERE MODAL -->
+	<div class="modal fade" id="whereModal" tabindex="-1" data-dismiss="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 align="center">Where are you going?</h1>
+					<br>
+					<form class="form-where" role="form" action="javascript:toWhen();">
+						<div class="btn-group-vertical where-btn-group" style="width: 75%;">
+							<button type="button" class="btn btn-primary btn-block where-radio-group">Around Evanston</button>
+							<button type="button" class="btn btn-primary btn-block where-radio-group">Around Chicago</button>
+							<button type="button" class="btn btn-primary btn-block where-radio-group" data-toggle="collapse" data-target="#somewhere-else">Somewhere Else</button>
+						</div>
+						
+						<!-- TODO: Fix collapsing -- other buttons should hide this container. -->
+						<div class="collapse container" id="somewhere-else"> 
+							<select class="form-control" id="country-select">
+								<option value="" selected="selected" disabled>Select Country</option>
+								<option value="USA">United States</option>
+								<option value="etc">etc...</option>
+							</select>
+							
+							<select class="form-control" id="state-select" disabled>
+								<option value="" selected="selected" disabled>Select State</option>
+								<option value="AL">AL</option>
+								<option value="AK">AK</option>
+								<option value="AZ">AZ</option>
+								<option value="AR">AR</option>
+								<option value="CA">CA</option>
+								<option value="CO">CO</option>
+								<option value="CT">CT</option>
+								<option value="DE">DE</option>
+								<option value="FL">FL</option>
+								<option value="GA">GA</option>
+								<option value="HI">HI</option>
+								<option value="ID">ID</option>
+								<option value="IL">IL</option>
+								<option value="IN">IN</option>
+								<option value="IA">IA</option>
+								<option value="KS">KS</option>
+								<option value="KY">KY</option>
+								<option value="LA">LA</option>
+								<option value="ME">ME</option>
+								<option value="MD">MD</option>
+								<option value="MA">MA</option>
+								<option value="MI">MI</option>
+								<option value="MN">MN</option>
+								<option value="MS">MS</option>
+								<option value="MO">MO</option>
+								<option value="MT">MT</option>
+								<option value="NE">NE</option>
+								<option value="NV">NV</option>
+								<option value="NH">NH</option>
+								<option value="NJ">NJ</option>
+								<option value="NM">NM</option>
+								<option value="NY">NY</option>
+								<option value="NC">NC</option>
+								<option value="ND">ND</option>
+								<option value="OH">OH</option>
+								<option value="OK">OK</option>
+								<option value="OR">OR</option>
+								<option value="PA">PA</option>
+								<option value="RI">RI</option>
+								<option value="SC">SC</option>
+								<option value="TN">TN</option>
+								<option value="TX">TX</option>
+								<option value="UT">UT</option>
+								<option value="VA">VT</option>
+								<option value="WA">WA</option>
+								<option value="WV">WV</option>
+								<option value="WI">WI</option>
+								<option value="WY">WY</option>
+							</select>
+							<input type="text" class="form-control" placeholder="Enter City">
+						</div>
+						
+						<div class="where-btn-group">
+							<button type="button" class="btn btn-primary where-radio-group btn-anywhere">Anywhere</button>
+						</div>
+						
+						<br><br>
+						<div>
+							<button type="button" class="btn btn-secondary pull-left" onClick="toLogin();">&#8678; Back</button>
+							<button type="submit" class="btn btn-success pull-right">Next &#8680;</button>
+						</div>
+						<br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- WHEN MODAL -->
+	<div class="modal fade" id="whenModal" tabindex="-1" data-dismiss="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 align="center"> When are you going? </h1>
+					<br>
+					<form class="form-when" role="form" action="javascript:toGroups();">
+						<h4 align="left">From:</h4>
+				    	<input type="text" class="form-control" placeholder="MM/DD/YYYY">
+						
+						<br>
+						<h4 align="left">To:</h4>
+				    	<input type="text" class="form-control" placeholder="MM/DD/YYYY">
+				    	
+				    	<br><br>
+						
+						<button type="button" class="btn btn-primary sticky-button" id="anytime-button">Any time</button>
+         				
+						<br><br>
+						<div>
+							<button type="button" class="btn btn-secondary pull-left" onClick="toWhere();">&#8678; Back</button>
+							<button type="submit" class="btn btn-success pull-right">Next &#8680;</button>
+						</div>
+						<br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--
+    <div class="form-group col-md-12" style="border-style:solid; border-width:0px; height:140px; background-color:#6b3377;">
+    <br>
+    <br>
+        <form class="form" role="form">
+            <div class="col-md-2">
+                <img src="TNU logo.png" class="img-responsive" alt="Responsive image">
+            </div>
+            <div class="col-md-4">
+                <dl class="dl-horizontal" style = "color:#ffffff;">
+                <dt><h4>where to go </dt>
+                <dd><label class="sr-only" for="exampleInputEmail2">destination</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter Destination"></dd>
+            </div>
+            <div class="col-md-4">
+                <dl class="dl-horizontal" style = "color:#ffffff;">
+                <dt><h4>when to go </dt>
+                <dd><label class="sr-only" for="exampleInputPassword2">Date</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Enter Date"></dd>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary btn-lg" >LOG IN</button>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary btn-lg pull-right" >LOG OUT</button>
+            </div>
+        </form>
+    </div>-->
+
+    <div class="row-offset-1" style="margin-top:25px;">
+        <div class="col-lg-3" style="background-color:#F7F7F9;">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="CreateGroup()">CREATE GROUP</button>
+            <br>
+            
+            <div class="form-group" style="border-style:solid; border-width:1px">
+	            <div class="form-group">
+	                <div class=" col-lg-12">
+	                    <input type="email" class="form-control margin" id="searchkey" placeholder="Search"><p></p>
+	                </div>
+	
+	                <div class="col-lg-offset-1">
+	                <span class="label label-warning">CAR POOL</span>
+	                &nbsp&nbsp&nbsp   
+	                <span class="label label-primary">SHARE CAR</span>
+	                &nbsp&nbsp&nbsp  
+	                <span class="label label-default">PARTNER</span>
+	                <p></p>
+	                </div>
+	
+	                    <div>
+	                    <div class="col-lg-9">
+	                        <select class="form-control" id="search by">
+	                                <option value="time">Order by...</option>
+	                                <option value="time">Time</option>
+	                                <option value="name">Name</option>
+	                                <option value="group size">Group Size</option>
+	                                <option value="popularity">Popularity</option>
+	                        </select>
+	                    </div>
+	                    <button class="btn btn-success" style="width: 95px;">Search</button>
+	                    </div>   
+	            </div>
+	        </div>
+            
+            <!-- OLD:
+            <div class="form-group" style="border-style:solid; border-width:1px">
+                <dl class="dl-horizontal">
+                <dt><div class="col-lg-offset-1 col-lg-12">
+                    <input type="email" class="form-control margin" id="searchkey" placeholder="Enter Keyword"></div></dt>
+                    <dd><button class="margin btn btn-success btn-sm col-md-offset-4" style = "margin-left:0%;">Search</button></dd>
+                </dl>
+                <dl class = "dl-horizontal" style="margin-left:10%;">
+                <span class="label label-default">Carpooling</span>
+                <span class="label label-primary">Shopping</span>
+                <span class="label label-warning">Florida</span>
+            </div>
+            <br>
+            <br>
+            <div style="height:550px; overflow-y: scroll;">
+            <span class="label label-info" style = "font-size:100%">Group Filter</span> <br><br>
+            <dl class = "dl-horizontal">
+                <input type = "checkbox" value = "time"> time<br><br>
+                <input type = "checkbox" value = "name"> name<br><br>
+                <input type = "checkbox" value = "group member"> number of group members<br><br>
+                <input type = "checkbox" value = "popularity"> popularity<br><br>
+            </div>
+        	</div>
+        </div>
+            -->
+        </div>
+        
+        <div class="col-lg-9">
+        <dl class = "dl-horizontal" style="margin-left:40%;">
+            <h2>Available Groups
+            </dl>
+        <div class="panel-group" style="margin-left:0%; overflow-y:scroll;">
+        
+        <a href="ChattingRooma.html" style="text-decoration:none;">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+            		<h4 class="panel-title">
+            		<img src = "group purple.png" width = "60" height="17">
+                	Flying to Florida
+                	<div class = "date" style="float:right;">March 25, 2014</div>    
+					</h4>
+    			</div>
+      			<div class="panel-body">
+					I'm from Florida, and will be going back this spring break. If someone wants to join me, post your contact details and we can talk.<br><br>
+       				<span class="label label-default">Sunshine</span>
+                	<span class="label label-primary">Florida</span>
+                	<span class="label label-warning">Travel</span>
+    			</div>
+			</div>
+		</a>
+		
+		<br>
+		
+		<a href="ChattingRoomb.html" style="text-decoration:none;">
+    		<div class="panel panel-default">
+        		<div class="panel-heading">
+            		<h4 class="panel-title">
+            		<img src = "group purple.png" width = "60" height="17">
+               		California for Spring Break!
+               		<div class = "date" style="float:right;">April 5, 2014</div>  
+      				</h4>
+    			</div>
+      			<div class="panel-body">
+        		We're a group of students planning to fly to California over break. If you're interested in joining, let us know!<br><br>
+       			<span class="label label-default">Warm</span>
+                <span class="label label-primary">Beach</span>
+                <span class="label label-warning">Travel</span>
+    			</div>
+    		</div>
+		</a>
+		
+		<br>
+		
+		<a href="ChattingRoomc.html" style="text-decoration:none;">
+    		<div class="panel panel-default">
+        		<div class="panel-heading">
+            		<h4 class="panel-title">
+            		<img src = "group purple.png" width = "60" height="17">
+                	Carpool to Aurora
+                	<div class = "date" style="float:right;">April 2, 2014</div>  
+      				</h4>
+    			</div>
+      			<div class="panel-body">
+       			I'd like share a ride to Aurora. Can I catch a ride with anybody out there?<br><br>
+       			<span class="label label-default">Carpooling</span>
+                <span class="label label-primary">Happiness</span>
+                <span class="label label-warning">Save time and money</span>
+    			</div>
+			</div>
+		</a>
+		
+		<br>
+		
+     	<a href="ChattingRoomd.html" style="text-decoration:none;">
+     		<div class="panel panel-default">
+        		<div class="panel-heading">
+            		<h4 class="panel-title">
+            		<img src = "group purple.png" width = "60" height="17">
+               		Shopping in Chicago  
+            		<div class = "date" style="float:right;">April 2, 2014</div>  
+      				</h4>
+    			</div>
+      			<div class="panel-body">
+         		I want to get together a group to go shopping in Chicago. My car can hold three people, contact me ASAP.<br><br>
+       			<span class="label label-default">Shopping</span>
+                <span class="label label-primary">Chicago</span>
+                <span class="label label-warning">SharingGas</span>
+                </div>
+    		</div>
+    	</a>
+    	
+    	<br>
+    	
+     	<a href="ChattingRoomf.html" style="text-decoration:none;">
+     		<div class="panel panel-default">
+        		<div class="panel-heading">
+            		<h4 class="panel-title">
+            		<img src = "group purple.png" width = "60" height="17">
+               		Want a travel partner to Boston  
+            		<div class = "date" style="float:right;">March 28, 2014</div>  
+      				</h4>
+    			</div>
+      			<div class="panel-body">
+         		I really want to go to Boston this spring break, but I'm a bit apprehensive to go alone... Is anybody else going there too?<br><br>
+                <span class="label label-primary">Boston</span>
+                <span class="label label-warning">Travel</span>
+                </div>
+    		</div>
+    	</a>
+    
+    <div class="modal fade" id="CreateGroupModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+	                    <br>
+	                    <h1 class="modal-title text-left" style="color:#6B5094;">Create a Group</h1>
+	                    
+	                    <br>
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">TOPIC</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="Type your Topic here">
+                                    </div>
+                                </div>
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">PLACE</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="Chicago">
+                                    </div>
+                                </div>
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">DATE</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="MM-DD-YYYY">
+                                        </div>
+                                    </div>        
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtags" class="col-md-2 control-label">TAGS</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="InputTopic" placeholder="Type here">
+                                    </div>
+                                </div>
+                            </form>  
+
+                        <li class="list-group-item">
+                            <h5><b>DESCRIPTION</b></h5>
+                            <textarea class="form-control" rows="7"></textarea>
+                        </li>
+
+                        <br>
+                        <div class="col-md-offset-5">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                         </div> 
+                    <!--/div-->
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+function CreateGroup()
+{
+	$('#CreateGroupModal').modal('show');
+}
+function joinA()
+{
+    document.location.href = "ChattingRooma.html";
+}
+function joinB()
+{
+    document.location.href = "ChattingRoomb.html";
+}
+function joinC()
+{
+    document.location.href = "ChattingRoomc.html";
+}
+function joinD()
+{
+    document.location.href = "ChattingRoomd.html";
+}
+</script>
+
+<script type="text/javascript">
+	function toLogin()
+	{
+		$('.modal').modal('hide');
+		$('#loginModal').modal('show');
+	};
+	
+	function toWhere()
+	{
+		$('.modal').modal('hide');
+		$('#whereModal').modal('show');
+	};
+	
+	function toWhen()
+	{
+		$('.modal').modal('hide');
+		$('#whenModal').modal('show');
+	};
+	
+	function toGroups()
+	{
+		document.location.href = "Main Page.html";
+	};
+	
+	function showSomewhereElse()
+	{
+		//$('#somewhere-else').collapse('show');
+		//$('#country-select').attr('required');
+	};
+	
+	function hideSomewhereElse()
+	{
+		//$('#somewhere-else').collapse('hide');
+		//$('#country-select').removeAttr('required');
+	};
+	
+	$('#somewhere-else').on('show.bs.collapse', function() {
+		$('#country-select').attr('required');
+	});
+	
+	$('#somewhere-else').on('hide.bs.collapse', function() {
+		$('#country-select').removeAttr('required');
+	});
+	
+	$('#country-select').click(function()
+	{
+		var e = document.getElementById("country-select");
+		
+		if(e.options[e.selectedIndex].value == "USA")
+		{
+			document.getElementById('state-select').disabled = false;
+		}
+		else
+		{
+			document.getElementById('state-select').disabled = true;
+		}
+	});
+	
+	//Temporary function -- register page not created yet.
+	function registerAlert()
+	{
+		alert("Sorry, this page hasn't been implemented yet!\n\nJust enter your Northwestern email and anything for the password and you will log in successfully.");
+	}
+	
+	//On page load
+	$(window).load(function() {
+		
+		if(sessionStorage.length == 0)
+		{
+			sessionStorage.setItem("login", 0);
+			
+			//Open Login modal
+			toLogin();
+		}
+		else
+		{
+			
+		}
+	});
+	
+	//$(window).bind('beforeunload', (function() {
+	//	sessionStorage.clear();
+	//});
+	
+	$(function() {
+  		$('#somewhere-else').collapse({
+    		toggle: false
+  		});
+  	});
+	
+	//Make where-radio-group buttons part of a radiobutton group
+	$('.where-radio-group').on('click', function(e) {
+		$('.where-radio-group').removeClass("active");
+		$(e.target).addClass("active");
+		
+		var id = $(e.target).attr('id');
+		/*
+		//Hide/show somewhere-else container
+		if(id == "swe")
+		{
+			$('#somewhere-else').collapse('toggle');
+		}
+		else
+		{
+			$('#somewhere-else').collapse('hide');
+		}
+		*/
+	});
+	
+	$('.sticky-button').on('click', function(e){
+		if($(e.target).hasClass("active"))
+		{
+			$(e.target).removeClass("active");
+		}
+		else
+		{
+			$(e.target).addClass("active");
+		}
+	});
+
+</script>
+
+  </body>
+</html>

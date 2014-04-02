@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TravelNU</title>
+		
+		<!-- Bootstrap core CSS -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+		<!-- Bootstrap theme -->
+		<!-- <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+		
+		<!-- Bootstrap Datepicker (Separate) -->
+		<link href="bootstrap/css/datepicker3.css" rel="stylesheet">
+		
+    
+	</head>
+	<body>
+  
+	<!-- NAVIGATION BAR -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="HomePage.html"><img src="logo.jpg" width=200 height=45 /></a>
+			</div>
+			
+			<form class="navbar-form navbar-left" role="form">
+				<div class="form-group">
+					<button type="button" class="btn btn-primary navbar-btn" onClick="toWhere();">Change Place/Time</button>
+				</div>
+			</form>
+			
+			<div class="navbar-collapse collapse pull-right">
+				<ul class="nav navbar-nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Preferences</a></li>
+							<li><a href="HomePage.html">Log Out</a></li>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+  
+  	<!-- LOGIN MODAL -->
+	<div class="modal fade" id="loginModal" tabindex="-1" data-dismiss="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<!-- LogIn form -->
+					<h1 align="center" class="modal-title"> Log In </h1>
+					<form class="form-signin" role="form" action="javascript:toWhere();">
+						<h4>Email address</h4>
+						<input type="email" class="form-control" placeholder="Northwestern Email" required autofocus>
+						<h4>Password</h4>
+						<input type="password" class="form-control" placeholder="Password" required>
+						<label class="checkbox">
+							<input type="checkbox" value="remember-me"> Remember me
+						</label>
+						<button class="btn btn-lg btn-primary btn-block" type="submit" id="btn-login-signup">Sign in</button>
+						<button class="btn btn-lg btn-secondary btn-block" type="button" id="btn-login-register" onCLick="registerAlert()">Register</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="toWhere()">Skip &#8680;</button>
+					<br>
+					(You will not be able to post)
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- WHERE MODAL -->
+	<div class="modal fade" id="whereModal" tabindex="-1" data-dismiss="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 align="center">Where are you going?</h1>
+					<br>
+					<form class="form-where" role="form" action="javascript:toWhen();">
+						<div class="btn-group-vertical where-btn-group" style="width: 75%;">
+							<button type="button" class="btn btn-primary btn-block where-radio-group">Around Evanston</button>
+							<button type="button" class="btn btn-primary btn-block where-radio-group">Around Chicago</button>
+							<button type="button" class="btn btn-primary btn-block where-radio-group" data-toggle="collapse" data-target="#somewhere-else">Somewhere Else</button>
+						</div>
+						
+						<!-- TODO: Fix collapsing -- other buttons should hide this container. -->
+						<div class="collapse container" id="somewhere-else"> 
+							<select class="form-control" id="country-select">
+								<option value="" selected="selected" disabled>Select Country</option>
+								<option value="USA">United States</option>
+								<option value="etc">etc...</option>
+							</select>
+							
+							<select class="form-control" id="state-select" disabled>
+								<option value="" selected="selected" disabled>Select State</option>
+								<option value="AL">AL</option>
+								<option value="AK">AK</option>
+								<option value="AZ">AZ</option>
+								<option value="AR">AR</option>
+								<option value="CA">CA</option>
+								<option value="CO">CO</option>
+								<option value="CT">CT</option>
+								<option value="DE">DE</option>
+								<option value="FL">FL</option>
+								<option value="GA">GA</option>
+								<option value="HI">HI</option>
+								<option value="ID">ID</option>
+								<option value="IL">IL</option>
+								<option value="IN">IN</option>
+								<option value="IA">IA</option>
+								<option value="KS">KS</option>
+								<option value="KY">KY</option>
+								<option value="LA">LA</option>
+								<option value="ME">ME</option>
+								<option value="MD">MD</option>
+								<option value="MA">MA</option>
+								<option value="MI">MI</option>
+								<option value="MN">MN</option>
+								<option value="MS">MS</option>
+								<option value="MO">MO</option>
+								<option value="MT">MT</option>
+								<option value="NE">NE</option>
+								<option value="NV">NV</option>
+								<option value="NH">NH</option>
+								<option value="NJ">NJ</option>
+								<option value="NM">NM</option>
+								<option value="NY">NY</option>
+								<option value="NC">NC</option>
+								<option value="ND">ND</option>
+								<option value="OH">OH</option>
+								<option value="OK">OK</option>
+								<option value="OR">OR</option>
+								<option value="PA">PA</option>
+								<option value="RI">RI</option>
+								<option value="SC">SC</option>
+								<option value="TN">TN</option>
+								<option value="TX">TX</option>
+								<option value="UT">UT</option>
+								<option value="VA">VT</option>
+								<option value="WA">WA</option>
+								<option value="WV">WV</option>
+								<option value="WI">WI</option>
+								<option value="WY">WY</option>
+							</select>
+							<input type="text" class="form-control" placeholder="Enter City">
+						</div>
+						
+						<div class="where-btn-group">
+							<button type="button" class="btn btn-primary where-radio-group btn-anywhere">Anywhere</button>
+						</div>
+						
+						<br><br>
+						<div>
+							<button type="button" class="btn btn-secondary pull-left" onClick="toLogin();">&#8678; Back</button>
+							<button type="submit" class="btn btn-success pull-right">Next &#8680;</button>
+						</div>
+						<br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- WHEN MODAL -->
+	<div class="modal fade" id="whenModal" tabindex="-1" data-dismiss="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 align="center"> When are you going? </h1>
+					<br>
+					<form class="form-when" role="form" action="javascript:toGroups();">
+						<h4 align="left">From:</h4>
+						<div class="input-group date" id="from-datepicker" align="center">
+				    		<input type="text" class="form-control date-text"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+				    	</div>
+						
+						<br>
+						<h4 align="left">To:</h4>
+						<div class="input-group date" id="to-datepicker" align="center">
+				    		<input type="text" class="form-control date-text"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+				    	</div>
+				    	
+				    	<br><br>
+						
+						<button type="button" class="btn btn-primary sticky-button" id="anytime-button">Any time</button>
+         				
+						<br><br>
+						<div>
+							<button type="button" class="btn btn-secondary pull-left" onClick="toWhere();">&#8678; Back</button>
+							<button type="submit" class="btn btn-success pull-right">Next &#8680;</button>
+						</div>
+						<br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Datepicker -->
+    <script src="bootstrap/js/bootstrap-datepicker.js"></script>
+    
+    <!-- Javascript -->
+    <script type="text/javascript">
+    
+	function toLogin()
+	{
+		$('.modal').modal('hide');
+		$('#loginModal').modal('show');
+	};
+	
+	function toWhere()
+	{
+		$('.modal').modal('hide');
+		$('#whereModal').modal('show');
+	};
+	
+	function toWhen()
+	{
+		$('.modal').modal('hide');
+		$('#whenModal').modal('show');
+	};
+	
+	function toGroups()
+	{
+		document.location.href = "Main Page.html";
+	};
+	
+	function showSomewhereElse()
+	{
+		//$('#somewhere-else').collapse('show');
+		//$('#country-select').attr('required');
+	};
+	
+	function hideSomewhereElse()
+	{
+		//$('#somewhere-else').collapse('hide');
+		//$('#country-select').removeAttr('required');
+	};
+	
+	$('#somewhere-else').on('show.bs.collapse', function() {
+		$('#country-select').attr('required');
+	});
+	
+	$('#somewhere-else').on('hide.bs.collapse', function() {
+		$('#country-select').removeAttr('required');
+	});
+	
+	$('#country-select').click(function()
+	{
+		var e = document.getElementById("country-select");
+		
+		if(e.options[e.selectedIndex].value == "USA")
+		{
+			document.getElementById('state-select').disabled = false;
+		}
+		else
+		{
+			document.getElementById('state-select').disabled = true;
+		}
+	});
+	
+	//Temporary function -- register page not created yet.
+	function registerAlert()
+	{
+		alert("Sorry, this page hasn't been implemented yet!\n\nJust enter your Northwestern email and anything for the password and you will log in successfully.");
+	}
+	
+	//On page load
+	$(window).load(function() {
+		//Open Login modal
+		toLogin();
+	});
+	
+	$(function() {
+  		$('#somewhere-else').collapse({
+    		toggle: false
+  		});
+  	});
+	
+	//Make where-radio-group buttons part of a radiobutton group
+	$('.where-radio-group').on('click', function(e) {
+		$('.where-radio-group').removeClass("active");
+		$(e.target).addClass("active");
+		
+		var id = $(e.target).attr('id');
+		/*
+		//Hide/show somewhere-else container
+		if(id == "swe")
+		{
+			$('#somewhere-else').collapse('toggle');
+		}
+		else
+		{
+			$('#somewhere-else').collapse('hide');
+		}
+		*/
+	});
+	
+	$('.sticky-button').on('click', function(e){
+		if($(e.target).hasClass("active"))
+		{
+			$(e.target).removeClass("active");
+		}
+		else
+		{
+			$(e.target).addClass("active");
+		}
+	});
+	
+	$(document).ready(function()
+	{
+		$('#from-datepicker').datepicker({});
+		$('#to-datepicker').datepicker({});
+	});
+	
+	</script>
+	
+	
+	<!-- CSS -->
+	<style>
+	
+	.form-control
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+		//margin-left: 5px;
+		//margin-right: 5px;
+	}
+	
+	.navbar-brand
+	{
+		padding-top: 10px;
+		//padding-left: 0px;
+	}
+	
+	//WHERE elements
+	
+	.where-btn-group
+	{
+		width: 75%;
+	}
+	
+	.where-radio-group
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.where-radio-group.active, .where-radio-group:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.btn-anywhere
+	{
+		width: 75%;
+		background-color: #A976F2;
+		margin-top: 10px;
+	}
+	
+	.btn-anywhere:hover, .btn-anywhere.active, .btn-anywhere:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.form-where, .form-when
+	{
+		text-align: center !important;	
+	}
+	
+	#somewhere-else
+	{
+		width: 75%;
+	}
+	
+	#state-select
+	{
+		width: 150px !important;
+	}
+	
+	//WHEN elements
+	
+	.date-text
+	{
+		width: 75% !important;
+	}
+	
+	#anytime-button
+	{
+		width: 75%;
+	}
+	
+	.form-when
+	{
+		text-align: center;
+	}
+	
+	
+	</style>
+  </body>
+</html>

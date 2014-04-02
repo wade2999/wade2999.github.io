@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TravelNU</title>
+        
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        <!-- Bootstrap theme -->
+        <!-- <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+        
+        <!-- Bootstrap Datepicker (Separate) -->
+        <link href="bootstrap/css/datepicker3.css" rel="stylesheet">
+        <style id="holderjs-style" type="text/css">
+input.margin
+{
+margin-top:25px;
+}
+button.margin
+{
+margin-top:25px;
+}
+p.margin
+{
+margin-top:5px;
+margin-bottom:5px;
+margin-left:15px;
+margin-right:15px;
+}
+img.margin
+{
+margin-top:2px;
+margin-bottom:2px;
+margin-left:2px;
+margin-right:2px;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-left{
+	text-align: left;
+}
+
+.col-md-offset-9{
+    margin-left: 1%;
+}
+	.form-control
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+		//margin-left: 5px;
+		//margin-right: 5px;
+	}
+	
+	.navbar-brand
+	{
+		padding-top: 10px;
+		//padding-left: 0px;
+	}
+	
+	//WHERE elements
+	
+	.where-btn-group
+	{
+		width: 75%;
+	}
+	
+	.where-radio-group
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.where-radio-group.active, .where-radio-group:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.btn-anywhere
+	{
+		width: 75%;
+		background-color: #A976F2;
+		margin-top: 10px;
+	}
+	
+	.btn-anywhere:hover, .btn-anywhere.active, .btn-anywhere:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.form-where, .form-when
+	{
+		text-align: center !important;	
+	}
+	
+	#somewhere-else
+	{
+		width: 75%;
+	}
+	
+	#state-select
+	{
+		width: 150px !important;
+	}
+	
+	//WHEN elements
+	
+	.date-text
+	{
+		width: 75% !important;
+	}
+	
+	#anytime-button
+	{
+		width: 75%;
+	}
+	
+	.form-when
+	{
+		text-align: center;
+	}
+
+	
+	
+.panel-default{
+    border:3px ;
+    border-style: solid;
+    border-color: #c48cd1;
+}
+.panel-default:hover{
+	background-color:#e1f0df;
+}
+
+  </style></head>
+
+
+
+<body>
+
+	<!-- NAVIGATION BAR -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="Main Page.html"><img src="logo.jpg" width=200 height=45 /></a>
+			</div>
+			
+			<form class="navbar-form navbar-left" role="form">
+				<div class="form-group">
+					<button type="button" class="btn btn-primary navbar-btn" onClick="toWhere();" disabled>Change Place/Time</button>
+				</div>
+			</form>
+			
+			<div class="navbar-collapse collapse pull-right">
+				<ul class="nav navbar-nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Preferences</a></li>
+							<li><a href="Main Page.html">Log Out</a></li>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+	<div style="height: 50px;">
+	</div>
+
+<!--
+    <div class="form-group col-md-12" style="border-style:solid; border-width:0px; height:140px; background-color:#6b3377;">
+    <br>
+    <br>
+        <form class="form" role="form">
+            <div class="col-md-2">
+                <img src=" logo.jpg" class="img-responsive" alt="Responsive image">
+            </div>
+            <div class="col-md-4">
+                <dl class="dl-horizontal">
+                <dt>where to go ?</dt>
+                <dd><label class="sr-only" for="exampleInputEmail2">destination</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter Destination"></dd>
+            </div>
+            <div class="col-md-4">
+                <dl class="dl-horizontal">
+                <dt>when to go ?</dt>
+                <dd><label class="sr-only" for="exampleInputPassword2">Date</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Date"></dd>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary btn-lg" >Go</button>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary btn-lg pull-right" >Sign in</button>
+            </div>
+        </form>
+    </div>-->
+
+    <div class="row-offset-1" style="margin-top:25px;">
+        <div class="col-lg-3" style="background-color:#F7F7F9;">
+            <button type="submit" class="btn btn-primary btn-lg btn-block"  data-dismiss="modal" onclick="myFunction()">CREATE GROUP</button>
+           <br>
+            
+            <div class="form-group" style="border-style:solid; border-width:1px">
+	            <div class="form-group">
+	                <div class=" col-lg-12">
+	                    <input type="email" class="form-control margin" id="searchkey" placeholder="Search"><p></p>
+	                </div>
+	
+	                <div class="col-lg-offset-1">
+	                <span class="label label-warning">CAR POOL</span>
+	                &nbsp&nbsp&nbsp   
+	                <span class="label label-primary">SHARE CAR</span>
+	                &nbsp&nbsp&nbsp  
+	                <span class="label label-default">PARTNER</span>
+	                <p></p>
+	                </div>
+	
+	                    <div>
+	                    <div class="col-lg-9">
+	                        <select class="form-control" id="search by">
+	                                <option value="time">Order by...</option>
+	                                <option value="time">Time</option>
+	                                <option value="name">Name</option>
+	                                <option value="group size">Group Size</option>
+	                                <option value="popularity">Popularity</option>
+	                        </select>
+	                    </div>
+	                    <button class="btn btn-success" style="width: 95px;">Search</button>
+	                    </div>   
+	            </div>
+	        </div>
+	        
+	        <h3 align="center">Available Groups</h3>
+            
+            
+            <!-- NEW GROUPS: -->
+            <div style="height:550px; overflow-y: scroll;">
+            <!--<div class="panel-group" style="margin-left:0%; height:550px; overflow-y: scroll;">-->
+		        <a href="ChattingRooma.html" style="text-decoration:none;">
+		        	<div class="panel panel-default">
+		        		<div class="panel-heading">
+		            		<h4 class="panel-title">
+		            		<img src = "group purple.png" width = "60" height="17">
+		                	Flying to Florida
+		                	<div class = "date" style="float:right;">March 25, 2014</div>    
+							</h4>
+		    			</div>
+		      			<div class="panel-body">
+							I'm from Florida, and will be going back this spring break. If someone wants to join me, post your contact details and we can talk.<br><br>
+		       				<span class="label label-default">Sunshine</span>
+		                	<span class="label label-primary">Florida</span>
+		                	<span class="label label-warning">Travel</span>
+		    			</div>
+					</div>
+				</a>
+				
+				<a href="ChattingRoomb.html" style="text-decoration:none;">
+		    		<div class="panel panel-default">
+		        		<div class="panel-heading">
+		            		<h4 class="panel-title">
+		            		<img src = "group purple.png" width = "60" height="17">
+		               		California for Spring Break!
+		               		<div class = "date" style="float:right;">April 5, 2014</div>  
+		      				</h4>
+		    			</div>
+		      			<div class="panel-body">
+		        		We're a group of students planning to fly to California over break. If you're interested in joining, let us know!<br><br>
+		       			<span class="label label-default">Warm</span>
+		                <span class="label label-primary">Beach</span>
+		                <span class="label label-warning">Travel</span>
+		    			</div>
+		    		</div>
+				</a>
+				
+				<a href="ChattingRoomc.html" style="text-decoration:none;">
+		    		<div class="panel panel-default">
+		        		<div class="panel-heading">
+		            		<h4 class="panel-title">
+		            		<img src = "group purple.png" width = "60" height="17">
+		                	Carpool to Aurora
+		                	<div class = "date" style="float:right;">April 2, 2014</div>  
+		      				</h4>
+		    			</div>
+		      			<div class="panel-body">
+		       			I'd like share a ride to Aurora. Can I catch a ride with anybody out there?<br><br>
+		       			<span class="label label-default">Carpooling</span>
+		                <span class="label label-primary">Happiness</span>
+		                <span class="label label-warning">Save time and money</span>
+		    			</div>
+					</div>
+				</a>
+				
+		     	<a href="ChattingRoomd.html" style="text-decoration:none;">
+		     		<div class="panel panel-default">
+		        		<div class="panel-heading">
+		            		<h4 class="panel-title">
+		            		<img src = "group purple.png" width = "60" height="17">
+		               		Shopping in Chicago  
+		            		<div class = "date" style="float:right;">April 2, 2014</div>  
+		      				</h4>
+		    			</div>
+		      			<div class="panel-body">
+		         		I want to get together a group to go shopping in Chicago. My car can hold three people, contact me ASAP.<br><br>
+		       			<span class="label label-default">Shopping</span>
+		                <span class="label label-primary">Chicago</span>
+		                <span class="label label-warning">SharingGas</span>
+		                </div>
+		    		</div>
+		    	</a>
+		    	
+		     	<a href="ChattingRoomf.html" style="text-decoration:none;">
+		     		<div class="panel panel-default">
+		        		<div class="panel-heading">
+		            		<h4 class="panel-title">
+		            		<img src = "group purple.png" width = "60" height="17">
+		               		Want a travel partner to Boston  
+		            		<div class = "date" style="float:right;">March 28, 2014</div>  
+		      				</h4>
+		    			</div>
+		      			<div class="panel-body">
+		         		I really want to go to Boston this spring break, but I'm a bit apprehensive to go alone... Is anybody else going there too?<br><br>
+		                <span class="label label-primary">Boston</span>
+		                <span class="label label-warning">Travel</span>
+		                </div>
+		    		</div>
+		    	</a>
+			</div>
+			</div>
+            
+            <!-- OLD GROUPS
+            <div style="height:550px; overflow-y: scroll;">
+                <a href="ChattingRoom.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>LOOKING FOR CAR POOL</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-warning">CAR POOL</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                
+                <a href="ChattingRoom.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>WANT A PARTNER TO SEATTLE</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoom.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>WANT A CAR OWNER!</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-primary">SHARE CAR</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoom.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>LOOKING FOR PARTNER TO LA</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoom.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>LOOKING FOR PARTNER TO NY</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoom.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>WANT A PARTNER TO BOSTON</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                -->
+            </div>
+            <div style="height:20px;">
+            </div>
+        </div>
+
+        <h4>&nbsp &nbsp 
+            <a href="Main Page.html">Group Selection</a> 
+                > California for Spring Break!</h4>
+        <br>
+        <p style="text-indent: 185px;">We're a group of students planning to fly to California over break. If you're interested in joining, let us know!</p>
+
+        <div class="col-lg-9">
+        <br>
+            <ul class="list-group" style="height:500px; overflow-y:scroll;">
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    Post here or email aaa000@u.northwestern.edu
+                </li>
+                <li class="list-group-item" style="background-color:#EFEFEF;">
+                    <img src="2.jpg" width="30" height="30" alt="Responsive image" class="img-cycle"> 
+                    I just emailed you         
+                </li>
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    Got it! Great, anyone else?
+                </li>
+                <li class="list-group-item" style="background-color:#EFEFEF;">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    Just to let you all know, I bought my plane ticket for 3:30pm. We should all meet up when we get there.
+                </li>
+                <li class="list-group-item">
+                    <img src=" 3.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This sounds really fun, count me in!
+                </li>
+                <li class="list-group-item" style="background-color:#EFEFEF;">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    Great! Can you email me your email address?
+                </li>
+            </ul>
+            <ul class="list-group" style="height:200px;">
+            <br>
+            <br>
+            <br>
+               <input type="text" class="form-control" placeholder="Text input">
+               <br>
+               <br>
+               <button type="button" class="btn btn-primary col-lg-3 col-lg-offset-4">Post!</button>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CreateGroupModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+	                    <br>
+	                    <h1 class="modal-title text-left" style="color:#6B5094;">Create a Group</h1>
+	                    
+	                    <br>
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">TOPIC</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="Type your Topic here">
+                                    </div>
+                                </div>
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">PLACE</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="Chicago">
+                                    </div>
+                                </div>
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">DATE</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="MM-DD-YYYY">
+                                        </div>
+                                    </div>        
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtags" class="col-md-2 control-label">TAGS</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="InputTopic" placeholder="Type here">
+                                    </div>
+                                </div>
+                            </form>  
+
+                        <li class="list-group-item">
+                            <h5><b>DESCRIPTION</b></h5>
+                            <textarea class="form-control" rows="7"></textarea>
+                        </li>
+
+                        <br>
+                        <div class="col-md-offset-5">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                         </div> 
+                    <!--/div-->
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Datepicker -->
+    <script src="bootstrap/js/bootstrap-datepicker.js"></script>
+    
+    <!-- Javascript -->
+    <script type="text/javascript">
+
+function myFunction()
+{
+$('#CreateGroupModal').modal('show');
+}
+</script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  </body>   
+</html>
+

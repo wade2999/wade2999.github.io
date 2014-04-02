@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+
+    <title>CHATTING ROOM</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="http://getbootstrap.com/examples/theme/theme.css" rel="stylesheet"> -->
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style id="holderjs-style" type="text/css">
+.text-center {
+text-align: right;
+}
+.col-md-offset-9 {
+margin-left: 1%;
+}
+=======
+  <head><meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TravelNU</title>
+        
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        <!-- Bootstrap theme -->
+        <!-- <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+        
+        <!-- Bootstrap Datepicker (Separate) -->
+        <link href="bootstrap/css/datepicker3.css" rel="stylesheet">
+        <style id="holderjs-style" type="text/css">
+input.margin
+{
+margin-top:25px;
+}
+button.margin
+{
+margin-top:25px;
+}
+p.margin
+{
+margin-top:5px;
+margin-bottom:5px;
+margin-left:15px;
+margin-right:15px;
+}
+img.margin
+{
+margin-top:2px;
+margin-bottom:2px;
+margin-left:2px;
+margin-right:2px;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-left{
+	text-align: left;
+}
+
+.col-md-offset-9{
+    margin-left: 1%;
+}
+	.form-control
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+		//margin-left: 5px;
+		//margin-right: 5px;
+	}
+	
+	.navbar-brand
+	{
+		padding-top: 10px;
+		//padding-left: 0px;
+	}
+	
+	//WHERE elements
+	
+	.where-btn-group
+	{
+		width: 75%;
+	}
+	
+	.where-radio-group
+	{
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.where-radio-group.active, .where-radio-group:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.btn-anywhere
+	{
+		width: 75%;
+		background-color: #A976F2;
+		margin-top: 10px;
+	}
+	
+	.btn-anywhere:hover, .btn-anywhere.active, .btn-anywhere:active
+	{
+		background-color: #C3A6ED;
+	}
+	
+	.form-where, .form-when
+	{
+		text-align: center !important;	
+	}
+	
+	#somewhere-else
+	{
+		width: 75%;
+	}
+	
+	#state-select
+	{
+		width: 150px !important;
+	}
+	
+	//WHEN elements
+	
+	.date-text
+	{
+		width: 75% !important;
+	}
+	
+	#anytime-button
+	{
+		width: 75%;
+	}
+	
+	.form-when
+	{
+		text-align: center;
+	}
+
+
+  </style></head>
+
+	<!-- NAVIGATION BAR -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="Main Page.html"><img src="logo.jpg" width=200 height=45 /></a>
+			</div>
+			
+			<form class="navbar-form navbar-left" role="form">
+				<div class="form-group">
+					<button type="button" class="btn btn-primary navbar-btn" onClick="toWhere();">Change Place/Time</button>
+				</div>
+			</form>
+			
+			<div class="navbar-collapse collapse pull-right">
+				<ul class="nav navbar-nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Preferences</a></li>
+							<li><a href="Main Page.html">Log Out</a></li>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+	<div style="height: 50px;">
+	</div>
+
+<!--
+<body>
+    <div class="form-group col-md-12" style="border-style:solid; border-width:0px; height:140px; background-color:#6b3377;">
+    <br>
+    <br>
+        <form class="form" role="form">
+            <div class="col-md-2">
+                <img src=" logo.jpg" class="img-responsive" alt="Responsive image">
+            </div>
+            <div class="col-md-4">
+                <dl class="dl-horizontal">
+                <dt>where to go ?</dt>
+                <dd><label class="sr-only" for="exampleInputEmail2">destination</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter Destination"></dd>
+            </div>
+            <div class="col-md-4">
+                <dl class="dl-horizontal">
+                <dt>when to go ?</dt>
+                <dd><label class="sr-only" for="exampleInputPassword2">Date</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Date"></dd>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary btn-lg" >Go</button>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary btn-lg pull-right" >Sign in</button>
+            </div>
+        </form>
+    </div>-->
+
+    <div class="row-offset-1" style="margin-top:25px;">
+        <div class="col-lg-3" style="background-color:#F7F7F9;">
+            <button type="submit" class="btn btn-primary btn-lg btn-block"  data-dismiss="modal" onclick="myFunction()">CREATE GROUP</button>
+           
+            <div class="form-group">
+                
+                <div class=" col-lg-12">
+                    <input type="email" class="form-control margin" id="searchkey" placeholder="Enter Keyword"><p></p>
+                </div>
+
+                <div class="col-lg-offset-1">
+                <span class="label label-warning">CAR POOL</span>
+                &nbsp&nbsp&nbsp   
+                <span class="label label-primary">SHARE CAR</span>
+                &nbsp&nbsp&nbsp  
+                <span class="label label-success">PARTNER</span>
+                <p></p>
+                </div>
+
+                    <div>
+                    <div class="col-lg-9">
+                        <select class="form-control" id="search by">
+                                <option value="time">search by</option>
+                                <option value="time">time</option>
+                                <option value="name">name</option>
+                                <option value="group size">group size</option>
+                                <option value="popularity">popularity</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary">Search</button>
+                    </div>   
+            </div>
+
+            <br>
+            <div style="height:550px; overflow-y: scroll;">
+                <a href="ChattingRoom.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>LOOKING FOR CAR POOL</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-warning">CAR POOL</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoomb.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>WANT A PARTNER TO SEATTLE</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoomc.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>WANT A CAR OWNER!</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-primary">SHARE CAR</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoomd.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>LOOKING FOR PARTNER TO LA</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoome.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>LOOKING FOR PARTNER TO NY</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+                <a href="ChattingRoomf.html">
+                <div class="list group">
+                    <li class="list-group-item">
+                        <p class="margin"><h4 class="text-center"><b>WANT A PARTNER TO BOSTON</b></h4></p>
+                        <br>
+                        <dl class="dl-horizontal">
+                        <dt><span class="label label-success">PARTNER</span></dt>
+                        <dd><p class="margin">2014.5.18</p></dd>
+                    </li>
+                </div></a>
+            </div>
+            <div style="height:50px;">
+            </div>
+        </div>
+
+        <h4>&nbsp &nbsp 
+            <a href="HomePage.html">
+            TravelNU</a>
+             > 
+            <a href="Main Page.html">Chicago 5.24.2014</a> 
+                > Looking For Car Pool</h4>
+        <br>
+        <div class="col-lg-9">
+        <br>
+            <ul class="list-group" style="height:500px; overflow-y:scroll;">
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This is a green fur turtle
+                </li>
+                <li class="list-group-item text-center"  style="background-color:#EFEFEF; text-align: right;">
+                    hello lazy green fur turtle
+                    <img src="2.jpg" width="30" height="30" alt="Responsive image" class="img-cycle col-md-offset-9">          
+                </li>
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This is a green fur turtle
+                </li>
+                <li class="list-group-item text-right" style="background-color:#EFEFEF;">
+                    Hello lazy green fur turtle
+                    <img src=" 2.jpg" width="30" height="30" alt="Responsive image" class="img-cycle col-md-offset-9">
+                </li>
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This is a green fur turtle
+                </li>
+                <li class="list-group-item text-right" style="background-color:#EFEFEF;">
+                    Hello lazy green fur turtle
+                    <img src=" 2.jpg" width="30" height="30" alt="Responsive image" class="img-cycle col-md-offset-9">
+                </li>
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This is a green fur turtle
+                </li>
+                <li class="list-group-item text-right" style="background-color:#EFEFEF;">
+                    Hello lazy green fur turtle
+                    <img src=" 2.jpg" width="30" height="30" alt="Responsive image" class="img-cycle col-md-offset-9">
+                </li>
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This is a green fur turtle
+                </li>
+                <li class="list-group-item text-right" style="background-color:#EFEFEF;">
+                    Hello lazy green fur turtle
+                    <img src=" 2.jpg" width="30" height="30" alt="Responsive image" class="img-cycle col-md-offset-9">
+                </li>
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This is a green fur turtle
+                </li>
+                <li class="list-group-item text-right" style="background-color:#EFEFEF;">
+                    Hello lazy green fur turtle
+                    <img src=" 2.jpg" width="30" height="30" alt="Responsive image" class="img-cycle col-md-offset-9">
+                </li>
+                <li class="list-group-item">
+                    <img src=" 1.png" width="30" height="30" alt="Responsive image" class="img-cycle">
+                    This is a green fur turtle
+                </li>
+            </ul>
+            <ul class="list-group" style="height:200px;">
+            <br>
+            <br>
+            <br>
+               <input type="text" class="form-control" placeholder="Text input">
+               <br>
+               <br>
+               <button type="button" class="btn btn-primary col-lg-3 col-lg-offset-4">Post!</button>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CreateGroupModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+	                    <br>
+	                    <h1 class="modal-title text-left" style="color:#6B5094;">Create a Group</h1>
+	                    
+	                    <br>
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">TOPIC</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="Type your Topic here">
+                                    </div>
+                                </div>
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">PLACE</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="Chicago">
+                                    </div>
+                                </div>
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtopic" class="col-md-2 control-label">DATE</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="Inputtopic" placeholder="MM-DD-YYYY">
+                                        </div>
+                                    </div>        
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputtags" class="col-md-2 control-label">TAGS</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="InputTopic" placeholder="Type here">
+                                    </div>
+                                </div>
+                            </form>  
+
+                        <li class="list-group-item">
+                            <h5><b>DESCRIPTION</b></h5>
+                            <textarea class="form-control" rows="7"></textarea>
+                        </li>
+
+                        <br>
+                        <div class="col-md-offset-5">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                         </div> 
+                    <!--/div-->
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Datepicker -->
+    <script src="bootstrap/js/bootstrap-datepicker.js"></script>
+    
+    <!-- Javascript -->
+    <script type="text/javascript">
+
+function myFunction()
+{
+$('#CreateGroupModal').modal('show');
+}
+
+</script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  </body>   
+</html>
+
